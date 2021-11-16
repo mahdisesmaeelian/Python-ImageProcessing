@@ -17,7 +17,7 @@ sunglasses = cv2.imread('img/sunglasses.png')
 video_cap = cv2.VideoCapture(0)
 
 while True:
-
+    
     ret,frame = video_cap.read()
     if ret == False:
         break
@@ -26,15 +26,20 @@ while True:
     
     for (x, y, w, h) in faces:
 
-        face_pos = frame[y:y+h, x:x+h]
+        face_pos = frame[y:y+h, x:x+w]
         eyes = eyes_detector.detectMultiScale(face_pos, scaleFactor=1.2, minNeighbors=5)
-        nose = nose_detector.detectMultiScale(face_pos, scaleFactor=1.3, minNeighbors=5)
-        
+        nose = nose_detector.detectMultiScale(face_pos, scaleFactor=1.5, minNeighbors=5)
+        roi = frame[y:y+h, x:x+h]
+
         if EmojiOnFace:
             sticker = cv2.resize(sticker1, (w,h))
-            _,transparent_sticker = cv2.threshold(sticker,25,255,cv2.THRESH_BINARY)
-            mask_sticker = cv2.bitwise_and(face_pos, face_pos, mask=transparent_sticker)
-            finalsticker =cv2.add(mask_sticker ,sticker)
+            _,mask= cv2.threshold(sticker,25,255,cv2.THRESH_BINARY)
+            mask_inv = cv2.bitwise_not(mask)
+
+            background1 = cv2.bitwise_and(roi,roi,mask = mask_inv)
+            mask_sticker = cv2.bitwise_and(sticker, sticker, mask=mask)
+
+            finalsticker =cv2.add(mask_sticker ,background1)
             frame[y:y+h, x:x+h] = finalsticker
 
         if SunglassesMustache:
