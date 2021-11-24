@@ -123,10 +123,6 @@ class CoordinateAlignmentModel():
 
             yield pred
 
-#left eye  = 35 36 33 37 39 42 40 41
-#right eye = 89 90 87 91 93 96 94 95
-#lips      = 52 55 56 53 56 58 69 68 67 71 63 64
-
 def insta_filter(frame,landmarks):
 
     x, y, w, h = cv2.boundingRect(landmarks)
@@ -173,10 +169,6 @@ if __name__ == '__main__':
         rows= frame.shape[0]
         cols = frame.shape[1]
 
-        # mask_left_eye = np.zeros((rows,cols,3),dtype='uint8')
-        # mask_right_eye = np.zeros((rows,cols,3),dtype='uint8')
-        
-        # img = cv2.resize(img,(0,0),fx= 0.5 ,fy= 0.5)
         color = (125, 255, 125)
 
         boxes, scores = fd.inference(frame)
@@ -201,56 +193,13 @@ if __name__ == '__main__':
             landmarks_right_eye = np.array(landmarks_right_eye)
             landmarks_lips = np.array(landmarks_lips)
 
-            # cv2.drawContours(mask,[landmarks_right_eye],-1,(255,255,255),-1)
-            # cv2.drawContours(mask,[landmarks_left_eye],-1,(255,255,255),-1)
-            # cv2.drawContours(mask,[landmarks_lips],-1,(255,255,255),-1)
-
-            # for index,p in enumerate(np.round(pred).astype(np.int)):
-            #     cv2.circle(img, tuple(p), 1, color, 1, cv2.LINE_AA)
-            #     cv2.putText(img, str(index),p,cv2.FONT_HERSHEY_COMPLEX,0.5,(0,0,255),1)
-
         frame = insta_filter(frame,landmarks_lips)
         frame = insta_filter(frame,landmarks_left_eye)
         frame = insta_filter(frame,landmarks_right_eye)
 
-        # cv2.imwrite("output/result2.jpg", frame)
         out.write(frame)
         cv2.imshow("Camera", frame)
         if cv2.waitKey(1) == ord('q'):
             break
 cam.release()
 cv2.destroyAllWindows()
-
-# if __name__ == '__main__':
-
-#     from TFLiteFaceDetector import UltraLightFaceDetecion
-#     import sys
-
-#     fd = UltraLightFaceDetecion(
-#         "weights/RFB-320.tflite",
-#         conf_threshold=0.88)
-#     fa = CoordinateAlignmentModel(
-#         "weights/coor_2d106.tflite")
-
-#     cap = cv2.VideoCapture(sys.argv[1])
-#     color = (125, 255, 125)
-
-#     while True:
-#         ret, frame = cap.read()
-
-#         if not ret:
-#             break
-
-#         start_time = time.perf_counter()
-
-#         boxes, scores = fd.inference(frame)
-
-#         for pred in fa.get_landmarks(frame, boxes):
-#             for p in np.round(pred).astype(np.int):
-#                 cv2.circle(frame, tuple(p), 1, color, 1, cv2.LINE_AA)
-
-#         print(time.perf_counter() - start_time)
-
-#         cv2.imshow("result", frame)
-#         if cv2.waitKey(0) == ord('q'):
-#             break
