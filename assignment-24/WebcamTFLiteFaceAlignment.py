@@ -150,6 +150,35 @@ def insta_filter(frame,landmarks):
     frame[int(y-(h*0.5)):int(y+h+(h*0.5)), int(x-(w*0.5)):int(x+w+(w*0.5))] = res*255
     return frame
 
+def insta_filter_lips(frame,landmarks):
+
+    x, y, w, h = cv2.boundingRect(landmarks)
+
+    rows= frame.shape[0]
+    cols = frame.shape[1]
+
+    mask = np.zeros((rows,cols,3),dtype='uint8')
+
+    cv2.drawContours(mask,[landmarks],-1,(255,255,255),-1)
+
+    frame_2x = cv2.resize(frame,(0,0), fx = 2, fy= 2)
+    mask_2x = cv2.resize(mask,(0,0), fx = 2, fy= 2)
+
+    frame_2x = frame_2x / 255
+    mask_2x = mask_2x / 255
+
+    frame_target = frame[int(y-(h*0.5)):int(y+h+(h*0.5)), int(x-(w*0.5)):int(x+w+(w*0.5))]
+    frame_target = frame_target / 255
+
+    forground = cv2.multiply(mask_2x, frame_2x)
+    background = cv2.multiply(frame_target,1- mask_2x[y*2:(y+h)*2,x*2:(x+w)*2])
+
+    if h >= 32:
+        res = cv2.add(background, forground[y*2:(y+h)*2,x*2:(x+w)*2])
+        frame[int(y-(h*0.5)):int(y+h+(h*0.5)), int(x-(w*0.5)):int(x+w+(w*0.5))] = res*255
+
+    return frame
+
 if __name__ == '__main__':
 
     fd = UltraLightFaceDetecion("weights/RFB-320.tflite",conf_threshold=0.88)
@@ -179,8 +208,7 @@ if __name__ == '__main__':
             landmarks_left_eye = []
             for i in [35 ,36 ,33 ,37 ,39 ,42 ,40 ,41]:
                 landmarks_left_eye.append(tuple(pred_int[i]))
-                print(pred_int[i])
-
+                
             landmarks_right_eye = []
             for i in [89 ,90 ,87 ,91 ,93 ,96 ,94 ,95]:
                 landmarks_right_eye.append(tuple(pred_int[i]))
@@ -193,7 +221,7 @@ if __name__ == '__main__':
             landmarks_right_eye = np.array(landmarks_right_eye)
             landmarks_lips = np.array(landmarks_lips)
 
-        frame = insta_filter(frame,landmarks_lips)
+        frame = insta_filter_lips(frame,landmarks_lips)
         frame = insta_filter(frame,landmarks_left_eye)
         frame = insta_filter(frame,landmarks_right_eye)
 
@@ -201,5 +229,6 @@ if __name__ == '__main__':
         cv2.imshow("Camera", frame)
         if cv2.waitKey(1) == ord('q'):
             break
+
 cam.release()
 cv2.destroyAllWindows()
