@@ -160,6 +160,9 @@ if __name__ == '__main__':
     fa = CoordinateAlignmentModel("weights/coor_2d106.tflite")
 
     cam = cv2.VideoCapture(0)
+    
+    fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+    out = cv2.VideoWriter('output.mp4', fourcc,20.0, (640,480))
 
     while True:
         ret,frame = cam.read()
@@ -211,6 +214,7 @@ if __name__ == '__main__':
         frame = insta_filter(frame,landmarks_right_eye)
 
         # cv2.imwrite("output/result2.jpg", frame)
+        out.write(frame)
         cv2.imshow("Camera", frame)
         if cv2.waitKey(1) == ord('q'):
             break
