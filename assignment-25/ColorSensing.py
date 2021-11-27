@@ -26,7 +26,5 @@ while True:
     else:
         cv2.putText(dst, "White", (25, 50), cv2.FONT_HERSHEY_PLAIN,3, (0, 0, 0),3) 
 
-
-
     cv2.imshow('Camera',dst)
     cv2.waitKey(1)                 
