@@ -19,12 +19,14 @@ while True:
     dst[180:300,270:390] = myrec
     color_detect_area = dst[180:300,270:390]
 
-    rows , cols = color_detect_area.shape
+    if  0 < np.average(color_detect_area) <= 70:
+        cv2.putText(dst, "Black", (25, 50), cv2.FONT_HERSHEY_PLAIN,3, (0, 0, 0),3) 
+    elif 70 < np.average(color_detect_area) <= 120:
+        cv2.putText(dst, "Gray", (25, 50), cv2.FONT_HERSHEY_PLAIN,3, (0, 0, 0),3)
+    else:
+        cv2.putText(dst, "White", (25, 50), cv2.FONT_HERSHEY_PLAIN,3, (0, 0, 0),3) 
 
-    for i in range(rows):
-        for j in range(cols):
-            if dst[i,j] >= 200:
-                print('yes') 
+
 
     cv2.imshow('Camera',dst)
     cv2.waitKey(1)                 
