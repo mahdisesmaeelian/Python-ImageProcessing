@@ -2,6 +2,7 @@ import cv2
 
 blurred = False
 rotated = False
+pixelate = False
 EmojiOnFace = False
 SunglassesMustache = False
 
@@ -72,7 +73,10 @@ while True:
                 finalmouth =cv2.add(mask_mouth ,nose_pos)
                 face_pos[my:my+mh, mx:mx+mw] = finalmouth
         
-        if blurred:
+        if blurred:          
+            frame[y:y+h, x:x+h] = cv2.blur(frame[y:y+h, x:x+h],(30,30))
+
+        if pixelate:
             for (x, y, w, h) in faces:
                 square = cv2.resize(frame[y:y+h,x:x+w], (10,10))
             output = cv2.resize(square, (w, h), interpolation=cv2.INTER_NEAREST)
@@ -92,8 +96,11 @@ while True:
 
     if key == ord('3'):
         blurred = not blurred
-
+    
     if key == ord('4'):
+        pixelate = not pixelate
+
+    if key == ord('5'):
         rotated = not rotated
 
     cv2.imshow('Camera',(frame))
