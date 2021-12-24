@@ -1,5 +1,7 @@
 ## Sudoku detector using opencv 
 
+The following code is a Python program that can be run at the command line ,It takes input image and output name from user :
+
 ◾Convert bgr color to gray
 
 ◾Using GaussianBlur for decrease noises
