@@ -31,4 +31,9 @@ The following code is a Python program that can be run at the command line ,It t
 
 
 This python project has an ability to recognize Sudoku table in live webcam.
+
 By pressing the s button, the sudoku image is cropped and saved.
+
+![2021-12-24_20-31-28](https://user-images.githubusercontent.com/88204357/147369098-47c77bad-e3ac-4e96-9fab-ecfd8183a20c.png)
+
+![2021-12-24_20-30-17](https://user-images.githubusercontent.com/88204357/147369100-555d65de-57de-4a30-a80f-ff386a632a02.png)
