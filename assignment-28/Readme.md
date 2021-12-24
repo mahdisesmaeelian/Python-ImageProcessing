@@ -27,3 +27,8 @@ The following code is a Python program that can be run at the command line ,It t
 
 ![2021-12-24_22-00-43](https://user-images.githubusercontent.com/88204357/147368852-b92db110-d2d2-4242-9bfe-1dd94f3c3c2d.png)
 
+## Webcam Sudoku Detector.py
+
+
+This python project has an ability to recognize Sudoku table in live webcam.
+By pressing the s button, the sudoku image is cropped and saved.
