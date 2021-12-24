@@ -27,11 +27,3 @@ The following code is a Python program that can be run at the command line ,It t
 
 ![2021-12-24_22-00-43](https://user-images.githubusercontent.com/88204357/147368852-b92db110-d2d2-4242-9bfe-1dd94f3c3c2d.png)
 
-
-
-
-```shell
-cd <ByteTrack_HOME>
-python3 tools/track.py -f exps/example/mot/yolox_x_mix_mot20_ch.py -c pretrained/bytetrack_x_mot20.pth.tar -b 1 -d 1 --fp16 --fuse --match_thresh 0.7 --mot20
-python3 tools/interpolation.py
-```
