@@ -6,7 +6,7 @@ from PySide6.QtCore import *
 
 loader = QUiLoader()
 app = QApplication(sys.argv)
-ui = loader.load("color picker.ui", None)
+ui = loader.load("Input\color picker.ui", None)
 ui.setWindowTitle("Color Picker")
 
 v_r = 0
