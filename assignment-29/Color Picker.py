@@ -19,7 +19,6 @@ def red_slider_changed(_,rcode):
     gcode = ui.greenSlider.value()
     bcode = ui.blueSlider.value()
     ui.labelColor.setText(f"rgb({rcode} , {gcode} , {bcode})")
-    ui.labelColor.setStyleSheet(f"background-color: red")
     ui.labelColor.setStyleSheet(f"background-color: rgb({rcode},{gcode},{bcode});")
 
 def green_slider_changed(_,gcode):
@@ -36,7 +35,6 @@ def blue_slider_changed(_,bcode):
     gcode = ui.greenSlider.value()
     bcode = ui.blueSlider.value()
     ui.labelColor.setText(f"rgb({rcode} , {gcode} , {bcode})")
-    ui.labelColor.setStyleSheet(f"background-color: blue")
     ui.labelColor.setStyleSheet(f"background-color: rgb({rcode},{gcode},{bcode});")
     
 
