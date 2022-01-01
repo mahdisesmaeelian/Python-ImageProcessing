@@ -172,10 +172,10 @@ color: rgb(255, 255, 255);</string>
          <item>
           <widget class="QSlider" name="redSlider">
            <property name="minimum">
-            <number>-1</number>
+            <number>0</number>
            </property>
            <property name="maximum">
-            <number>254</number>
+            <number>255</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -246,10 +246,10 @@ color: rgb(255, 255, 255);</string>
          <item>
           <widget class="QSlider" name="greenSlider">
            <property name="minimum">
-            <number>-1</number>
+            <number>0</number>
            </property>
            <property name="maximum">
-            <number>254</number>
+            <number>255</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -320,10 +320,10 @@ color: rgb(255, 255, 255);</string>
          <item>
           <widget class="QSlider" name="blueSlider">
            <property name="minimum">
-            <number>-1</number>
+            <number>0</number>
            </property>
            <property name="maximum">
-            <number>254</number>
+            <number>255</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
