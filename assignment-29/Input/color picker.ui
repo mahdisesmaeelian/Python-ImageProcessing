@@ -78,7 +78,7 @@
 color: rgb(255, 255, 255);</string>
              </property>
              <property name="text">
-              <string>rgb(255 , 255 , 255)</string>
+              <string>rgb(0 , 0 , 0)</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
