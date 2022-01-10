@@ -20,3 +20,9 @@
 
 
 ![2022-01-10_12-57-03](https://user-images.githubusercontent.com/88204357/148743615-17994692-a97c-4476-a4da-768879a72f1c.png)
+
+
+![2022-01-10_13-05-09](https://user-images.githubusercontent.com/88204357/148744547-523ede51-a3f1-4a6f-9443-10451f77209d.png)
+
+
+![2022-01-10_13-06-07](https://user-images.githubusercontent.com/88204357/148744553-8a25b105-7b30-431c-a500-8cd6a44bfc4a.png)
